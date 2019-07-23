@@ -25,7 +25,7 @@ resource "aws_iam_role_policy_attachment" "policy-role" {
 
 resource "aws_kms_key" "key" {
   count = var.create_kms_key ? 1 : 0
-  description = "ssm-password-rotation"
+  description = "${var.app_name} key"
   deletion_window_in_days = 7
 }
 
@@ -44,16 +44,16 @@ locals {
 }
 
 resource "aws_ssm_maintenance_window" "window" {
-  name = "maintenance-window-application"
-  schedule = "rate(1 day)"
+  name = "${var.app_name}-maintenance-window"
+  schedule = "${var.schedule}"
   duration = 2
   cutoff = 1
 }
 
 resource "aws_ssm_maintenance_window_target" "target" {
   window_id = "${aws_ssm_maintenance_window.window.id}"
-  name = "maintenance-window-target"
-  description = "This is a maintenance window target"
+  name = "${var.app_name}-maintenance-window-target"
+  description = "${var.app_name} maintenance window target"
   resource_type = "INSTANCE"
 
   targets {
@@ -63,7 +63,7 @@ resource "aws_ssm_maintenance_window_target" "target" {
 }
 
 resource "aws_ssm_maintenance_window_task" "wtask" {
-  name = "windows_password_rotation"
+  name = "${var.app_name}-windows_password_rotation"
   max_concurrency = 2
   max_errors = 1
   priority = 1
@@ -99,7 +99,7 @@ resource "aws_ssm_maintenance_window_task" "wtask" {
 resource "aws_ssm_maintenance_window_task" "ctask" {
 
   count = var.enabled_cloudwatch_task ? 1 : 0
-  name = "cloudwatch_log"
+  name = "${var.app_name}-cloudwatch_log"
   max_concurrency = 2
   max_errors = 1
   priority = 2

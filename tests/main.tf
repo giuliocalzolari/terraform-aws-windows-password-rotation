@@ -10,5 +10,15 @@ terraform {
 module "this" {
   source = "giuliocalzolari/windows-password-rotation/aws"
   # source = "../"
-  version = "1.0.2"
+  version  = "1.0.3"
+  app_name = "app1"
+}
+
+module "this2" {
+  source                  = "giuliocalzolari/windows-password-rotation/aws"
+  version                 = "1.0.3"
+  app_name                = "app2"
+  ssm_target_key          = "tag:Demo"
+  schedule                = "rate(2 days)"
+  enabled_cloudwatch_task = false
 }

@@ -18,6 +18,12 @@ variable "enabled_cloudwatch_task" {
 
 }
 
+variable "schedule" {
+  description = "SSM maintenance window schedule"
+  default     = "rate(1 day)"
+  type        = string
+}
+
 variable "ssm_target_key" {
   description = "SSM maintenance window target Tags key"
   default     = "tag:PasswordRotate"
