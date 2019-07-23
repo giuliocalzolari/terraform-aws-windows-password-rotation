@@ -5,12 +5,10 @@ variable "app_name" {
   type        = string
 }
 
-
 variable "create_kms_key" {
   default = false
   type    = bool
 }
-
 
 variable "enabled_cloudwatch_task" {
   default = true
