@@ -12,8 +12,10 @@ Module compatible with Terraform `0.12`
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | app\_name | Application Name | string | `"windows_password_rotation"` | no |
-| create\_kms\_key |  | bool | `"false"` | no |
-| enabled\_cloudwatch\_task |  | bool | `"true"` | no |
+| create\_kms\_key | Create a dedicated KMS key or use default `alias/aws/ssm` | bool | `"false"` | no |
+| enabled\_cloudwatch\_task | create task to periodically install cloudwatch logs | bool | `"true"` | no |
+| ssm\_target\_key | SSM maintenance window target Tags key | string | `"tag:PasswordRotate"` | no |
+| ssm\_target\_values | SSM maintenance window target Tags values | list | `[ "Enabled" ]` | no |
 
 ## Outputs
 

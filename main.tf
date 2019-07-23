@@ -57,8 +57,8 @@ resource "aws_ssm_maintenance_window_target" "target" {
   resource_type = "INSTANCE"
 
   targets {
-    key = "tag:PasswordRotate"
-    values = ["Enabled"]
+    key = var.ssm_target_key
+    values = var.ssm_target_values
   }
 }
 

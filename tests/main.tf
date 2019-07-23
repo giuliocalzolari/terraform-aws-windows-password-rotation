@@ -10,5 +10,5 @@ terraform {
 module "this" {
   source = "giuliocalzolari/windows-password-rotation/aws"
   # source = "../"
-  version = "1.0.1"
+  version = "1.0.2"
 }

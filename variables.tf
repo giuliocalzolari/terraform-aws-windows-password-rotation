@@ -6,12 +6,27 @@ variable "app_name" {
 }
 
 variable "create_kms_key" {
-  default = false
-  type    = bool
+  description = "Create a dedicated KMS key or use default `alias/aws/ssm`"
+  default     = false
+  type        = bool
 }
 
 variable "enabled_cloudwatch_task" {
-  default = true
-  type    = bool
+  description = "create task to periodically install cloudwatch logs"
+  default     = true
+  type        = bool
 
 }
+
+variable "ssm_target_key" {
+  description = "SSM maintenance window target Tags key"
+  default     = "tag:PasswordRotate"
+  type        = string
+}
+
+variable "ssm_target_values" {
+  description = "SSM maintenance window target Tags values"
+  default     = ["Enabled"]
+  type        = list
+}
+
