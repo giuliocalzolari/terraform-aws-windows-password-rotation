@@ -1,6 +1,7 @@
 # AWS SSM Windows Password Rotation
 
-
+## Overview
+You can find the original article on [AWS Blog](https://aws.amazon.com/blogs/mt/password-rotation-for-windows-on-amazon-ec2-made-easy-with-ec2rescue/)
 
 ## Terraform version
 Module compatible with Terraform `0.12`
